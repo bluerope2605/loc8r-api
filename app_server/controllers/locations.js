@@ -5,7 +5,7 @@ const apiOptions = {
   server: 'http://localhost:3000' // 개발환경 넣기
 };
 if (process.env.NODE_ENV === 'production') { //환경변수가 production이면 제품환경(히로쿠)로
-  apiOptions.server = 'https://loc8rv2.herokuapp.com';
+  apiOptions.server = 'https://loc8r-api-ypqt.onrender.com';
 }
 
 const getLocationInfo = (req,res,callback) =>{
