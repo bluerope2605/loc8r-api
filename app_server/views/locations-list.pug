@@ -1,0 +1,30 @@
+extends layout
+
+//-스타가 필요한 새 템플릿을 만들때 include 파일 참조해서 outputRating mixin 호출가능//
+include _includes/sharedHTMLfunctions.pug
+
+block content
+  .row.banner
+    .col-12
+      h1= pageHeader.title
+        small &nbsp;#{pageHeader.strapline} 
+        //-외부데이터를 변수로서 참조//
+
+  .row
+    .col-12.col-md-8
+      .error= message 
+        //-message는 API의 에러를 출력하기 위한 곳??
+        each location in locations
+          .card
+            .card-block
+              h4
+                a(href=`/location/${location._id}`)= location.name
+                +outputRating(location.rating) 
+                span.badge.badge-pill.badge-default.float-right= location.distance
+              p.address= location.address
+              .facilities
+                each facility in location.facilities || []
+                  span.badge.bg-warning= facility
+
+    .col-12.col-md-4
+      p.lead= sidebar
